@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Out</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+            transition: color 0.3s ease-in-out;
+        }
+        #buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        button {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        #yesButton {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        #noButton {
+            background-color: #FF4F4F;
+            color: #fff;
+        }
+        #yayLabel {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        #backButton {
+            font-size: 18px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            padding: 10px 20px;
+            display: none;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        #backButton:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div id="question">Will you go on a date with me, Cynthia?</div>
+<div id="buttons">
+    <button id="yesButton" onclick="handleYes()">Yes</button>
+    <button id="noButton" onclick="handleNo()">No</button>
+</div>
+<div id="yayLabel">Yay! You and Me. Sethi Restraunt.</div>
+<button id="backButton" onclick="goBack()">Back</button>
+
+<script>
+    function handleYes() {
+        document.getElementById('question').innerHTML = '';
+        hideButtons();
+        showYayLabel();
+        showBackButton();
+    }
+
+    function handleNo() {
+        moveNoButton();
+    }
+
+    function hideButtons() {
+        const buttons = document.getElementById('buttons');
+        buttons.style.opacity = '0';
+    }
+
+    function showYayLabel() {
+        const yayLabel = document.getElementById('yayLabel');
+        yayLabel.style.display = 'block';
+    }
+
+    function showBackButton() {
+        const backButton = document.getElementById('backButton');
+        backButton.style.display = 'block';
+    }
+
+    function moveNoButton() {
+        const noButton = document.getElementById('noButton');
+        const maxX = window.innerWidth - noButton.offsetWidth;
+        const maxY = window.innerHeight - noButton.offsetHeight;
+
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        noButton.style.position = 'absolute';
+        noButton.style.left = newX + 'px';
+        noButton.style.top = newY + 'px';
+    }
+
+    function goBack() {
+        location.reload(); // Reload the page to go back to the original state
+    }
+</script>
+
+</body>
+</html>
